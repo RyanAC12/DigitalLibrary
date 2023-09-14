@@ -2,7 +2,9 @@
 const myLibrary = [];
 
 // Book constructor
-function Book(title, author, pages, read) {
+let bookIDCounter = 0;
+function Book(id, title, author, pages, read) {
+    this.id = id
     this.title = title
     this.author = author
     this.pages = pages
@@ -11,8 +13,9 @@ function Book(title, author, pages, read) {
 
 // Push new books to library array
 function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read);
+    let newBook = new Book(bookIDCounter++, title, author, pages, read);
     myLibrary.push(newBook);
+    return newBook;
 }
 
 // Get book from inputs and utilize previous function within
@@ -27,8 +30,8 @@ function addBookFromForm() {
         return;
     }
 
-    addBookToLibrary(title, author, pages, read);
-    renderBook({title, author, pages, read}, myLibrary.length - 1);
+    let newBook = addBookToLibrary(title, author, pages, read);
+    renderBook(newBook);
     clearForm();
 }
 
@@ -63,17 +66,17 @@ closeDialogBtn.addEventListener('click', () => {
 });
 
 // Append new books to bookshelf
-function renderBook(book, index) {
+function renderBook(book) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('bookcard');
-    bookCard.dataset.index = index;
+    bookCard.dataset.id = book.id;
 
     bookCard.innerHTML = `
     <h3>${book.title}</h3>
     <p>Author: ${book.author}</p>
     <p>Pages: ${book.pages}</p>
     <p>Read: ${book.read ? "Yes" : "No"}</p>
-    <button onclick="deleteBook(${index})">Delete Book</button>
+    <button onclick="deleteBook(${book.id})">Delete Book</button>
     `;
 
     const bookGrid = document.querySelector('.bookgrid');
@@ -81,16 +84,16 @@ function renderBook(book, index) {
 }
 
 // Delete books from bookshelf
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
+function deleteBook(bookID) {
+    const index = myLibrary.findIndex(book => book.id == bookID);
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+    }
 
     const bookGrid = document.querySelector('.bookgrid');
-    const bookCard = bookGrid.querySelector(`[data-index="${index}"]`);
+    const bookCard = bookGrid.querySelector(`[data-id="${bookID}"]`);
+    if (bookCard) {
     bookGrid.removeChild(bookCard);
-
-    // Reassign book indices in array
-    const bookCards = document.querySelectorAll('.bookcard');
-    bookCards.forEach((card, idx) => {
-        card.dataset.index = idx;
-    })
+    }
 }
+

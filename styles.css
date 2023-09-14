@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&family=Jost:wght@500&family=Poppins:wght@500&family=Roboto:wght@500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 15%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    background-color: white;
+    padding: 1rem;
+}
+
+.header button {
+    width: auto;
+    height: auto;
+    border: none;
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 1rem;
+    background-color: #f4f4f5;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.header button:hover {
+    transition: 0.2s;
+    background-color: #d4d4d8;
+    scale: 1.1;
+}
+
+.header button:active {
+    transition: 0.2s;
+    scale: 0.9
+}
+
+.header p {
+    font-size: 100px;
+}
+
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+form {
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+form input:not(#read) {
+    flex: 1;
+    height: 1rem;
+    padding: 5px;
+}
+
+.formbuttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+form button {
+    background-color: #f4f4f5;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+form button:hover {
+    transition: 0.2s;
+    background-color: #d4d4d8;
+}
+
+form button:active {
+    transition: 0.2s;
+    scale: 0.9
+}
+
+#errorarea {
+    color: red;
+    opacity: 0;
+    height: auto;
+    transition: opacity 0.3s;
+    padding: 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    padding-bottom: 1rem;
+}
+
+.bookshelf {
+    width: 100%;
+    height: 85%;
+    background-color: #f4f4f5;
+    display: flex;
+    justify-content: center;
+}
+
+.bookgrid {
+    width: 70%;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    justify-content: center;
+    background-color: #f4f4f5;
+}
+
+.bookcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 200px;
+    height: 300px;
+    border-radius: 1rem;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.493);
+    background-color: #34d399;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.bookcard button {
+    background-color: #bbf7d0;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.bookcard button:hover {
+    transition: 0.2s;
+    background-color: #e9cac5;
+}
+
+form button:active {
+    transition: 0.2s;
+    scale: 0.9
+}

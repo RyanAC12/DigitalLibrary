@@ -149,10 +149,11 @@ form button:active {
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.493);
     background-color: #34d399;
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    overflow: hidden;
 }
 
 .bookcard button {
-    background-color: #bbf7d0;
+    background-color: #d1d5db;
     border: none;
     border-radius: 3px;
     padding: 5px;
@@ -163,7 +164,16 @@ form button:active {
 
 .bookcard button:hover {
     transition: 0.2s;
-    background-color: #e9cac5;
+    scale: 1.05;
+    background-color: #9ca3af;
+}
+
+.bookcard .readstatus {
+    background-color: #e5e7eb;
+}
+
+.bookcard .readstatus:hover {
+    background-color: #e5e7eb;
 }
 
 form button:active {

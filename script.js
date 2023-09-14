@@ -26,13 +26,20 @@ function addBookFromForm() {
     let read = document.getElementById('read').checked;
 
     if (!title || !author || !pages) {
-        alert('Please fill out each field!');
+        const error = document.getElementById('errorarea');
+        error.textContent = "Please fill out each field!"
+        error.style.opacity = '1'
         return;
+    }
+    else {
+        const error = document.getElementById('errorarea');
+        error.style.opacity = '0';
     }
 
     let newBook = addBookToLibrary(title, author, pages, read);
     renderBook(newBook);
     clearForm();
+    newBookDialog.close();
 }
 
 // Clear form after submission
@@ -41,6 +48,9 @@ function clearForm() {
     document.getElementById('author').value = '';
     document.getElementById('pages').value = '';
     document.getElementById('read').checked = false;
+
+    const error = document.getElementById('errorarea');
+    error.style.opacity = '0'
 }
 
 // Open dialog modal
@@ -55,7 +65,6 @@ const addBookBtn = document.getElementById('addBookBtn');
 addBookBtn.addEventListener('click', (event) => {
     event.preventDefault();
     addBookFromForm();
-    newBookDialog.close();
 })
 
 // Close dialog modal without submission

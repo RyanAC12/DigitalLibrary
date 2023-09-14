@@ -27,7 +27,6 @@ function addBookFromForm() {
 
     if (!title || !author || !pages) {
         const error = document.getElementById('errorarea');
-        error.textContent = "Please fill out each field!"
         error.style.opacity = '1'
         return;
     }
@@ -84,7 +83,7 @@ function renderBook(book) {
     <h3>${book.title}</h3>
     <p>Author: ${book.author}</p>
     <p>Pages: ${book.pages}</p>
-    <p>Read: ${book.read ? "Yes" : "No"}</p>
+    <button class="readstatus" onclick="toggleReadStatus(${book.id})">${book.read ? "Read" : "Not Read"}</button>
     <button onclick="deleteBook(${book.id})">Delete Book</button>
     `;
 
@@ -103,6 +102,23 @@ function deleteBook(bookID) {
     const bookCard = bookGrid.querySelector(`[data-id="${bookID}"]`);
     if (bookCard) {
     bookGrid.removeChild(bookCard);
+    }
+}
+
+// Toggle read status on submitted books
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
+}
+
+function toggleReadStatus(bookID) {
+    const book = myLibrary.find(book => book.id == bookID);
+    if (book) {
+        book.toggleRead();
+        const bookCard = document.querySelector(`[data-id="${bookID}"]`);
+        if (bookCard) {
+            const readStatus = bookCard.querySelector('.readstatus')
+            readStatus.textContent = `${book.read ? "Read" : "Not Read"}`;
+        }
     }
 }
 
